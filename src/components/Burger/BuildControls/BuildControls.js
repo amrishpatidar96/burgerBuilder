@@ -12,6 +12,7 @@ const controls = [
 
 
 const buildControls = (props)=>{
+    console.log("buildcontrols");
     return (
         <div className={classes.BuildControls}>
             <p> totalPrice :<strong>{props.totalPrice.toFixed(2)}</strong></p>

@@ -5,7 +5,7 @@ import classes from "./BurgerIngredient.module.css";
 
 const burgerIngredient = (props) => {
   let ingredient = null;
-
+  console.log("[BurgerIngredient.js]");
   switch (props.type) {
 
     case "bread-bottom":

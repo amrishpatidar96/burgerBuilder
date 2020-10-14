@@ -30,6 +30,8 @@ class Layout extends Component
     }
 
     render(){
+
+        console.log("layout")
         return (
         <Aux>
             <Toolbar clicked = {this.showBackdropAndSideDrawer}/>

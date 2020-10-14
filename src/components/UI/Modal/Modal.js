@@ -18,7 +18,7 @@ const modal = (props) => (
             }}
             >
             {
-                props.children   //orderSummary
+                props.children  
             }
         </div>
     </Aux>
