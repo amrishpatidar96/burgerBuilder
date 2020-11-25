@@ -12,18 +12,18 @@ const controls = [
 
 
 const buildControls = (props)=>{
-    console.log("buildcontrols");
+    //console.log("buildcontrols");
     return (
         <div className={classes.BuildControls}>
             <p> totalPrice :<strong>{props.totalPrice.toFixed(2)}</strong></p>
 
             {controls.map(ctrl=>(
                 <BuildControl 
-                key={ctrl.label}  
-                label={ctrl.label}
-                added={()=>props.ingredientAdded(ctrl.type)}
-                removed={()=>props.ingredientsRemoved(ctrl.type)}
-                disabledInfo={props.disabledInfo[ctrl.type]}
+                    key={ctrl.label}  
+                    label={ctrl.label}
+                    added={()=>props.ingredientAdded(ctrl.type)}
+                    removed={()=>props.ingredientsRemoved(ctrl.type)}
+                    disabledInfo={props.disabledInfo[ctrl.type]}
 
                 />
             ))}

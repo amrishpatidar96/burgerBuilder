@@ -31,14 +31,13 @@ class Layout extends Component
 
     render(){
 
-        console.log("layout")
         return (
         <Aux>
             <Toolbar clicked = {this.showBackdropAndSideDrawer}/>
             <SideDrawer closed={this.closeBackdropAndSideDrawer}  showBackdrop={this.state.showBackdrop}/>
             <main className={classes.Content}>
                 {
-                    this.props.children   //Burger Builder Component 
+                    this.props.children   //navigation bar items 
                 }      
             </main>        
         </Aux>);

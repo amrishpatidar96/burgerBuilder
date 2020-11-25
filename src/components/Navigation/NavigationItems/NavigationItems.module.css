@@ -1,14 +1,15 @@
 .NavigationItems{
-    margin:0;
-    padding:0px;
+    margin: 0;
+    padding: 0;
     list-style:none;
     display:flex;
     flex-flow:column;
     align-items:center;
     height: 100%;
+    width: 100%;
     box-sizing: border-box;
-    border:1px solid white;
-   justify-content: space-between;
+    justify-content: space-between;
+   
 }
 
 
@@ -16,5 +17,7 @@
 {
     .NavigationItems{
         flex-flow: row;
+        justify-content: flex-end;
+        
     }
 }
