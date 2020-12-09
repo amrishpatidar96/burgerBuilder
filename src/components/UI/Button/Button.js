@@ -4,7 +4,7 @@ import classes from './Button.module.css';
 
 const button =(props)=>{ 
     let btnStyle =[classes.Button];
-    console.log("disabled"+props.disabled);
+    //console.log("disabled"+props.disabled);
     if(props.btnType==="Danger")
         btnStyle.push(classes.Danger);
     if(props.btnType==="Success")

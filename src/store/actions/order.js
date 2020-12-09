@@ -25,10 +25,10 @@ export const purchaseBurgerStart = ()=>{
 }
 
 
-export const purchaseBurger = (orderData)=>{
+export const purchaseBurger = (orderData,token)=>{
     return  (dispatch) => {
         dispatch(purchaseBurgerStart()); //to set loading to true 
-        axios.post("/orders.json", orderData)
+        axios.post("/orders.json?auth="+token, orderData)
         .then((response) => {
             console.log(response.data);
             dispatch(purchaseBurgerSuccess(response.data.name,orderData));
@@ -45,4 +45,49 @@ export const purchaseInit = () => {
     }
 }
 
+export const fetchOrdersSuccess = (orders) => {
+    return {
+        type:actionTypes.FETCH_ORDERS_SUCCESS,
+        orders:orders
+    }
+}
 
+export const fetchOrdersFail = (error) => {
+    return {
+        type:actionTypes.FETCH_ORDERS_FAIL,
+        error : error
+    }
+}
+
+export const fetchOrdersStart = () => {
+    return{
+        type:actionTypes.FETCH_ORDERS_START
+    }
+}
+
+export const fetchOrders = (token) => {
+    return dispatch =>{
+
+        dispatch(fetchOrdersStart());
+        axios.get('/orders.json?auth='+token)
+        .then(response =>{
+            const fetchedOrders = [];
+
+            for(let key in response.data)
+            {    
+                fetchedOrders.push({
+                    ...response.data[key],
+                    id:key
+                });
+                
+            }
+            console.log(fetchedOrders);
+            dispatch(fetchOrdersSuccess(fetchedOrders))
+           
+        })
+        .catch(error =>{
+            // this.setState({loading:false});
+            dispatch(fetchOrdersFail(error));
+        });
+    }
+}

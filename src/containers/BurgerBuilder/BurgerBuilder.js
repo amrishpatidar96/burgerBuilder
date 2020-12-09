@@ -10,7 +10,7 @@ import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import { connect } from "react-redux";
 import * as actionCreaters from "../../store/actions/index";
-import {purchaseInit} from '../../store/actions/index'
+
 
 
 class BurgerBuilder extends Component {
@@ -28,7 +28,15 @@ class BurgerBuilder extends Component {
   };
 
   purchaseHandler = () => {
-    this.setState({ purchasing: true });
+    if(this.props.authToken)
+    {
+      this.setState({ purchasing: true });
+    }
+    else{
+      //set redirect path to /checkout
+      this.props.onSetAuthRedirectPath('/checkout');
+      this.props.history.push('/auth');
+    }
   };
 
   purchaseCancelHandler = () => {
@@ -49,7 +57,7 @@ class BurgerBuilder extends Component {
   
   componentWillMount()
   {
-      this.props.onPurchaseInit();
+    this.props.onPurchaseInit();
   }
   
   componentDidMount() {
@@ -81,6 +89,7 @@ class BurgerBuilder extends Component {
               totalPrice={this.props.price}
               orderBtnDisabled={this.orderButtonDisabledInfo(this.props.ingredients)}
               ordered={this.purchaseHandler}
+              isAuth={this.props.authToken?true:false}
           />
           </Aux>
       );
@@ -123,7 +132,8 @@ const mapStateToProps = (state) => {
   return {
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    error: state.burgerBuilder.error
+    error: state.burgerBuilder.error,
+    authToken:state.auth.token
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -139,7 +149,10 @@ const mapDispatchToProps = (dispatch) => {
     onIngredientFetched: () => {
       dispatch(actionCreaters.fetchIngredientAsnc());
     },
-    onPurchaseInit : () =>dispatch(purchaseInit())
+    onPurchaseInit : () =>dispatch(actionCreaters.purchaseInit()),//action related to order.js
+
+    onSetAuthRedirectPath: (path) =>dispatch(actionCreaters.setAuthRedirectPath(path))
+
   };
 };
 

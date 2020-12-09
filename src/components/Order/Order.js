@@ -5,22 +5,22 @@ const order = (props) =>{
     return(
         <div className={classes.Order}  >
             <p>Customer address:{
-            props.order.customer.address.street
-            +props.order.customer.address.zipcode
-            +props.order.customer.address.country
+            props.order.street
+            +props.order.zipcode
+            +props.order.country
 
             }</p>
-            <p>Customer email:{props.order.customer.email}</p>
-            <p>Customer name:{props.order.customer.name}</p>
+            <p>Customer email:{props.order.email}</p>
+            <p>Customer name:{props.order.name}</p>
             <p>Customer deliveryMethod :{props.order.deliveryMethod}</p>
 
             
             <ul style={{padding:'20px'}}>
                 <strong>Ingredients :</strong>
-                {Object.keys(props.order.ingredients).map((key)=>{
-                   return <li key={key}>{key+' : '+props.order.ingredients[key]}</li>;
+                {Object.keys(props.ingredients).map((key)=>{
+                   return <li key={key}>{key+' : '+props.ingredients[key]}</li>;
                 })}
-                <li key={"price"}>Price : <strong>USD {Number.parseFloat(props.order.price).toFixed(2)}</strong></li>
+                <li key={"price"}>Price : <strong>USD {Number.parseFloat(props.price).toFixed(2)}</strong></li>
             </ul>    
            
            
